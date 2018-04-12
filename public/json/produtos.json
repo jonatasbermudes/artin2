@@ -1,0 +1,17 @@
+[{
+  "categoria": "Cartão",
+  "codigo": "cartaoSimples",
+  "descricao": "Cor frente e verso - Verniz total frente - Couche 250g",
+  "valor": {
+    "1kuni": 100.00,
+    "2kini": 150.00,
+    "3kuni": 190.00
+  }
+}, {
+  "categoria": "Panfleto",
+  "codigo": "panfletoSimples",
+  "descricao": "Cor frente e verso - Couche 110g - 150x210mm",
+  "1kuni": 100.00,
+  "2kini": 150.00,
+  "3kuni": 190.00
+}]
