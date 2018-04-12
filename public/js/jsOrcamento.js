@@ -1,10 +1,11 @@
 //Declaração de variáveis globais
+var produtos;
 
 //Busca dados do Json no carregamento da página
 window.onload = function() {
   rotinaSessao();
-  rotinaLayout();
-  //buscarUsuarios();
+  buscarProdutos();
+//  rotinaLayout();
 }
 
 //Rotina necessária para avaliar se a sessão do usuário ainda está ativa (menos de 10 minutos de inatividade)
@@ -25,23 +26,26 @@ function rotinaSessao() {
 
 //Função que carrega o layout da página de acordo com os dados do usuário e configurações customizáveis
 function rotinaLayout() {
-  inner("textoSaudacao", "Olá, " + getS("sessaoNomeUsuario") + ".");
+
+//só encontra os dados chamando ação através de um botão, depois de carregar a página...
+  alert(produtos[0]["quantidades"]);
+
+
 }
 
-//Apaga os dados da sessão e volta para a tela de login
-function sair() {
-  clrS();
-  nav("index");
+//Função para gerar e exibir o texto contendo o orçamento
+function gerarOrcamento() {
+
 }
 
 //Busca e retorna os objetos no arquivo Json
-// function buscarUsuarios() {
-//   var xmlhttp = new XMLHttpRequest();
-//   xmlhttp.onreadystatechange = function() {
-//     if (this.readyState == 4 && this.status == 200) {
-//       usuarios = verificaCampos(JSON.parse(this.responseText));
-//     }
-//   };
-//   xmlhttp.open("GET", "./json/usuarios.json", true);
-//   xmlhttp.send();
-// }
+function buscarProdutos() {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      produtos = JSON.parse(this.responseText);
+    }
+  };
+  xmlhttp.open("GET", "./json/produtos.json", true);
+  xmlhttp.send();
+}

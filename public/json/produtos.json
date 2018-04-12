@@ -1,17 +1,35 @@
 [{
-  "categoria": "Cartão",
-  "codigo": "cartaoSimples",
-  "descricao": "Cor frente e verso - Verniz total frente - Couche 250g",
-  "valor": {
-    "1kuni": 100.00,
-    "2kini": 150.00,
-    "3kuni": 190.00
+    "nome": "Cartão de Visita - Padrão",
+    "descricao": "Cor frente e verso - Verniz total frente - Couche 250g",
+    "quantidades": [{
+      "1000": 100.00,
+      "2000": 150.00,
+      "5000": 200.00
+    }]
+  },
+  {
+    "nome": "Cartão de Visita - Premium",
+    "descricao": "Cor frente e verso - Laminação fosca e verniz localizado frente e verso - Couche 300g",
+    "quantidades": {
+      "1000 unidades": 200.00,
+      "2000 unidades": 250.00,
+      "5000 unidades": 300.00
+    }
+  }, {
+    "nome": "Panfleto - Padrão",
+    "descricao": "Cor frente e verso - 15cm x 21cm - Couche 115g",
+    "quantidades": {
+      "1000 unidades": 300.00,
+      "2000 unidades": 450.00,
+      "5000 unidades": 500.00
+    }
+  }, {
+    "nome": "Panfleto - Premium",
+    "descricao": "Cor frente e verso - 15cm x 21cm - Couche 175g",
+    "quantidades": {
+      "1000 unidades": 500.00,
+      "2000 unidades": 550.00,
+      "5000 unidades": 600.00
+    }
   }
-}, {
-  "categoria": "Panfleto",
-  "codigo": "panfletoSimples",
-  "descricao": "Cor frente e verso - Couche 110g - 150x210mm",
-  "1kuni": 100.00,
-  "2kini": 150.00,
-  "3kuni": 190.00
-}]
+]
