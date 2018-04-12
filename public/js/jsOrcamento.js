@@ -40,14 +40,28 @@ function filtrarOrcamento() {
 
   for (var i = 0; i < produtos.length; i++){
       lista += "<li>";
-      lista += "<input id='" + produtos[i].codigo + "' type='checkbox' class='checkbox'>";
-      lista += produtos[i].nome;
+      if(getE("checkCartao").checked && (produtos[i].codigo == "cv1" || produtos[i].codigo == "cv2")) {
+        lista += "<input id='" + produtos[i].codigo + "' type='checkbox' class='checkbox'>";
+        lista += produtos[i].nome;
+      }
+
+      if(getE("checkPanfleto").checked && (produtos[i].codigo == "pf1" || produtos[i].codigo == "pf2")) {
+        lista += "<input id='" + produtos[i].codigo + "' type='checkbox' class='checkbox'>";
+        lista += produtos[i].nome;
+      }
+
+      if(getE("checkLogo").checked && (produtos[i].codigo == "lg1" || produtos[i].codigo == "lg2")) {
+        lista += "<input id='" + produtos[i].codigo + "' type='checkbox' class='checkbox'>";
+        lista += produtos[i].nome;
+      }
       lista += "</li>";
   }
+
   lista += "</ul>";
 
   inner("listaServicos", lista);
 
+  getE("selecoes").className += " is-hidden";
   getE("botaoFiltrar").className += " is-hidden";
   getE("botaoOrcamento").className = "button is-primary";
 }

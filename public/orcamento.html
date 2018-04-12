@@ -19,16 +19,28 @@
       <div class="container">
 
         <h2 class="subtitle">Qual o tipo do serviço?</h2>
-        <div class="field">
-          <input id="checkLogo" type="checkbox" class="checkbox">
-          <span>Logotipo</span>
-          <input id="checkCartao" type="checkbox" class="checkbox">
-          <span>Cartão</span>
-          <input id="checkPanfleto" type="checkbox" class="checkbox">
-          <span>Panfleto</span>
+        <div id="selecoes" class="field">
+          <p class="control">
+            <label class="checkbox">
+              <input id="checkLogo" type="checkbox">
+              Logotipo
+            </label>
+          </p>
+          <p class="control">
+            <label class="checkbox">
+              <input id="checkCartao" type="checkbox">
+              Cartão
+            </label>
+          </p>
+          <p class="control">
+            <label class="checkbox">
+              <input id="checkPanfleto" type="checkbox">
+              Panfleto
+            </label>
+          </p>
         </div>
         <div id="listaServicos" class="field">
-
+          <!--Aquis serão listados serviços do tipo selecionado-->
         </div>
         <div class="field">
           <a id="botaoFiltrar" class="button is-primary" onclick="filtrarOrcamento()">
