@@ -17,8 +17,29 @@
   <section class="hero is-fullheight">
     <div class="hero-body">
       <div class="container">
-        <a class="button" onclick="rotinaLayout()"></a>
-        <p id="teste"></p>
+
+        <h2 class="subtitle">Qual o tipo do serviço?</h2>
+        <div class="field">
+          <input id="checkLogo" type="checkbox" class="checkbox">
+          <span>Logotipo</span>
+          <input id="checkCartao" type="checkbox" class="checkbox">
+          <span>Cartão</span>
+          <input id="checkPanfleto" type="checkbox" class="checkbox">
+          <span>Panfleto</span>
+        </div>
+        <div id="listaServicos" class="field">
+
+        </div>
+        <div class="field">
+          <a id="botaoFiltrar" class="button is-primary" onclick="filtrarOrcamento()">
+            <span class="icon"><i class="fa fa-search"></i></span>
+            <span>Filtrar</span>
+          </a>
+          <a id="botaoOrcamento" class="button is-primary is-hidden" onclick="gerarOrcamento()">
+            <span class="icon"><i class="fa fa-check"></i></span>
+            <span>Gerar Orçamento</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>

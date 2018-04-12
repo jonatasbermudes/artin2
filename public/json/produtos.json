@@ -1,13 +1,15 @@
 [{
+    "codigo": "cv1",
     "nome": "Cartão de Visita - Padrão",
     "descricao": "Cor frente e verso - Verniz total frente - Couche 250g",
-    "quantidades": [{
+    "quantidades": {
       "1000": 100.00,
       "2000": 150.00,
       "5000": 200.00
-    }]
+    }
   },
   {
+    "codigo": "cv2",
     "nome": "Cartão de Visita - Premium",
     "descricao": "Cor frente e verso - Laminação fosca e verniz localizado frente e verso - Couche 300g",
     "quantidades": {
@@ -16,6 +18,7 @@
       "5000 unidades": 300.00
     }
   }, {
+    "codigo": "pf1",
     "nome": "Panfleto - Padrão",
     "descricao": "Cor frente e verso - 15cm x 21cm - Couche 115g",
     "quantidades": {
@@ -24,6 +27,7 @@
       "5000 unidades": 500.00
     }
   }, {
+    "codigo": "pf2",
     "nome": "Panfleto - Premium",
     "descricao": "Cor frente e verso - 15cm x 21cm - Couche 175g",
     "quantidades": {

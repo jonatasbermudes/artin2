@@ -5,7 +5,7 @@ var produtos;
 window.onload = function() {
   rotinaSessao();
   buscarProdutos();
-//  rotinaLayout();
+  rotinaLayout();
 }
 
 //Rotina necessária para avaliar se a sessão do usuário ainda está ativa (menos de 10 minutos de inatividade)
@@ -27,10 +27,29 @@ function rotinaSessao() {
 //Função que carrega o layout da página de acordo com os dados do usuário e configurações customizáveis
 function rotinaLayout() {
 
-//só encontra os dados chamando ação através de um botão, depois de carregar a página...
-  alert(produtos[0]["quantidades"]);
+}
 
+//Função para filtrar os tipos de serviço a serem exibidos
+function filtrarOrcamento() {
+  var filtrarLogo = getE("checkLogo").checked;
+  var filtrarCartao = getE("checkCartao").checked;
+  var filtrarPanfleto = getE("checkPanfleto").checked;
 
+  var lista = "";
+  lista += "<ul style='list-style-type:none'>";
+
+  for (var i = 0; i < produtos.length; i++){
+      lista += "<li>";
+      lista += "<input id='" + produtos[i].codigo + "' type='checkbox' class='checkbox'>";
+      lista += produtos[i].nome;
+      lista += "</li>";
+  }
+  lista += "</ul>";
+
+  inner("listaServicos", lista);
+
+  getE("botaoFiltrar").className += " is-hidden";
+  getE("botaoOrcamento").className = "button is-primary";
 }
 
 //Função para gerar e exibir o texto contendo o orçamento
