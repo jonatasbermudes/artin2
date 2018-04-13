@@ -76,29 +76,10 @@ function filtrarOrcamento() {
   getE("botaoOrcamento").className = "button is-primary";
 }
 
-//Função para gerar e exibir o texto contendo o orçamento
-function gerarOrcamento() {
-  var produtosSelecionados = [];
-
-  for (var i = 0; i < produtos.length; i++) {
-    var item = {};
-    item.cod = produtos[i].codigo;
-    item.sel = getE(produtos[i].codigo) == null ? false : getE(produtos[i].codigo).checked;
-    if (item.sel == true) {
-      produtosSelecionados.push(item);
-    }
-  }
-
-  //"produtosSelecionados" terá apenas o codigo dos produtos selecionados
-  for (var i = 0; i < produtosSelecionados.length; i++) {
-    alert(produtosSelecionados[i].cod + ": " + produtosSelecionados[i].sel);
-  }
-}
-
 //Função para exibir as quantidades de cada produto selecionado
 function exibirQuantidades(cod) {
   if (!getE(cod).checked) {
-    inner("qtd" + cod, "");
+    inner(cod, "");
     return;
   }
 
@@ -108,7 +89,7 @@ function exibirQuantidades(cod) {
     if (produtos[i].codigo == cod) {
       for (var c in produtos[i].quantidades) {
         quantidades += "<label class='checkbox'>"
-        quantidades += "<input id='qtd" + produtos[i].codigo + "' type='checkbox'>"
+        quantidades += "<input id='" + produtos[i].codigo + c + "' type='checkbox'>"
         quantidades += c + " uni: R$ " + produtos[i].quantidades[c] + "&nbsp&nbsp";
         quantidades += "</label>";
       }
@@ -116,6 +97,40 @@ function exibirQuantidades(cod) {
   }
 
   inner("qtd" + cod, quantidades);
+}
+
+//Função para gerar e exibir o texto contendo o orçamento
+function gerarOrcamento() {
+  var produtosSelecionados = [];
+
+  for (var i = 0; i < produtos.length; i++) {
+    var item = {};
+    item.cod = produtos[i].codigo;
+    item.qtd = produtos[i].quantidades;
+    var sel = getE(produtos[i].codigo) == null ? false : getE(produtos[i].codigo).checked;
+    if (sel == true) {
+      produtosSelecionados.push(item);
+    }
+  }
+
+
+
+  //"produtosSelecionados" terá apenas o codigo dos produtos selecionados
+  for (var i = 0; i < produtos.length; i++) {
+    for (var j = 0; j < produtosSelecionados.length; j++) {
+      //for (var t in produtosSelecionados[j]) {
+
+        if (produtos[i].codigo == produtosSelecionados[j].cod){
+          produtosSelecionados[j].qtd[""]
+        }
+
+
+        alert(produtosSelecionados[j][t]["5000"]);
+      //}
+    }
+  }
+
+  var orcamento = "";
 }
 
 //Busca e retorna os objetos no arquivo Json
