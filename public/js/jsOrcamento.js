@@ -113,24 +113,50 @@ function gerarOrcamento() {
     }
   }
 
-
-
   //"produtosSelecionados" terá apenas o codigo dos produtos selecionados
   for (var i = 0; i < produtos.length; i++) {
     for (var j = 0; j < produtosSelecionados.length; j++) {
       //for (var t in produtosSelecionados[j]) {
 
-        if (produtos[i].codigo == produtosSelecionados[j].cod){
-          produtosSelecionados[j].qtd[""]
-        }
+      if (produtos[i].codigo == produtosSelecionados[j].cod) {
+        produtosSelecionados[j].qtd[""]
+      }
 
 
-        alert(produtosSelecionados[j][t]["5000"]);
+      alert(produtosSelecionados[j][t]["5000"]);
       //}
     }
   }
 
   var orcamento = "";
+}
+
+function gerarOrcamentoTeste() {
+  var orcamento = "";
+  var valorTotal = 0;
+
+  for (var i = 0; i < produtos.length; i++) {
+
+    if (getE(produtos[i].codigo).checked != null && getE(produtos[i].codigo).checked) {
+      orcamento += "\n" + produtos[i].nome + "\n";
+      orcamento += produtos[i].descricao + "\n";
+    }
+
+    for (var q in produtos[i].quantidades) {
+      if (getE(produtos[i].codigo + "" + q).checked != null && getE(produtos[i].codigo + "" + q).checked) {
+
+        orcamento += q + " unidades: R$ " + produtos[i].quantidades[q] + "\n";
+        valorTotal += produtos[i].quantidades[q];
+
+      }
+    }
+  }
+
+  orcamento += "\n" + "Valor total: R$ " + valorTotal;
+  orcamento += "\n\n" + "Orçamento válido por 7 dias";
+  orcamento += "\n" + "Entrega em até 10 dias úteis após aprovação da arte";
+
+  alert(orcamento);
 }
 
 //Busca e retorna os objetos no arquivo Json
