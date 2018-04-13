@@ -36,39 +36,86 @@ function filtrarOrcamento() {
   var filtrarPanfleto = getE("checkPanfleto").checked;
 
   var lista = "";
-  lista += "<ul style='list-style-type:none'>";
 
-  for (var i = 0; i < produtos.length; i++){
-      lista += "<li>";
-      if(getE("checkCartao").checked && (produtos[i].codigo == "cv1" || produtos[i].codigo == "cv2")) {
-        lista += "<input id='" + produtos[i].codigo + "' type='checkbox' class='checkbox'>";
-        lista += produtos[i].nome;
-      }
+  for (var i = 0; i < produtos.length; i++) {
 
-      if(getE("checkPanfleto").checked && (produtos[i].codigo == "pf1" || produtos[i].codigo == "pf2")) {
-        lista += "<input id='" + produtos[i].codigo + "' type='checkbox' class='checkbox'>";
-        lista += produtos[i].nome;
-      }
+    if (filtrarCartao && (produtos[i].codigo == "cv1" || produtos[i].codigo == "cv2")) {
+      lista += "<p class='control'>";
+      lista += "<label class='checkbox'>";
+      lista += "<input id='" + produtos[i].codigo + "' type='checkbox' onchange=\"exibirQuantidades('" + produtos[i].codigo + "')\">" + "&nbsp";
+      lista += produtos[i].nome;
+      lista += "</label>";
+      lista += "<div id='qtd" + produtos[i].codigo + "'></div>";
+      lista += "</p>";
+    }
 
-      if(getE("checkLogo").checked && (produtos[i].codigo == "lg1" || produtos[i].codigo == "lg2")) {
-        lista += "<input id='" + produtos[i].codigo + "' type='checkbox' class='checkbox'>";
-        lista += produtos[i].nome;
-      }
-      lista += "</li>";
+    if (filtrarPanfleto && (produtos[i].codigo == "pf1" || produtos[i].codigo == "pf2")) {
+      lista += "<p class='control'>";
+      lista += "<label class='checkbox'>";
+      lista += "<input id='" + produtos[i].codigo + "' type='checkbox' onchange=\"exibirQuantidades('" + produtos[i].codigo + "')\">" + "&nbsp";
+      lista += produtos[i].nome + "&nbsp";
+      lista += "</label>";
+      lista += "<div id='qtd" + produtos[i].codigo + "'></div>";
+      lista += "</p>";
+    }
+
+    if (filtrarLogo && (produtos[i].codigo == "lg1" || produtos[i].codigo == "lg2")) {
+      lista += "<p class='control'>";
+      lista += "<label class='checkbox'>";
+      lista += "<input id='" + produtos[i].codigo + "' type='checkbox' onchange=\"exibirQuantidades('" + produtos[i].codigo + "')\">" + "&nbsp";
+      lista += produtos[i].nome + "&nbsp";
+      lista += "</label>";
+      lista += "<div id='qtd" + produtos[i].codigo + "'></div>";
+      lista += "</p>";
+    }
   }
 
-  lista += "</ul>";
+  inner("selecoes", lista);
 
-  inner("listaServicos", lista);
-
-  getE("selecoes").className += " is-hidden";
   getE("botaoFiltrar").className += " is-hidden";
   getE("botaoOrcamento").className = "button is-primary";
 }
 
 //Função para gerar e exibir o texto contendo o orçamento
 function gerarOrcamento() {
+  var produtosSelecionados = [];
 
+  for (var i = 0; i < produtos.length; i++) {
+    var item = {};
+    item.cod = produtos[i].codigo;
+    item.sel = getE(produtos[i].codigo) == null ? false : getE(produtos[i].codigo).checked;
+    if (item.sel == true) {
+      produtosSelecionados.push(item);
+    }
+  }
+
+  //"produtosSelecionados" terá apenas o codigo dos produtos selecionados
+  for (var i = 0; i < produtosSelecionados.length; i++) {
+    alert(produtosSelecionados[i].cod + ": " + produtosSelecionados[i].sel);
+  }
+}
+
+//Função para exibir as quantidades de cada produto selecionado
+function exibirQuantidades(cod) {
+  if (!getE(cod).checked) {
+    inner("qtd" + cod, "");
+    return;
+  }
+
+  var quantidades = "<div style='padding-left: 20px'>";
+
+  for (var i = 0; i < produtos.length; i++) {
+    if (produtos[i].codigo == cod) {
+      for (var c in produtos[i].quantidades) {
+        quantidades += "<label class='checkbox'>"
+        quantidades += "<input id='qtd" + produtos[i].codigo + "' type='checkbox'>"
+        quantidades += c + " uni: R$ " + produtos[i].quantidades[c] + "&nbsp&nbsp";
+        quantidades += "</label>";
+      }
+    }
+  }
+
+  inner("qtd" + cod, quantidades);
 }
 
 //Busca e retorna os objetos no arquivo Json

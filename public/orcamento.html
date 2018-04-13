@@ -17,7 +17,6 @@
   <section class="hero is-fullheight">
     <div class="hero-body">
       <div class="container">
-
         <h2 class="subtitle">Qual o tipo do serviço?</h2>
         <div id="selecoes" class="field">
           <p class="control">
@@ -39,10 +38,13 @@
             </label>
           </p>
         </div>
-        <div id="listaServicos" class="field">
-          <!--Aquis serão listados serviços do tipo selecionado-->
-        </div>
         <div class="field">
+          <a id="botaoVoltar" class="button is-danger is-primary" onclick="nav('principal')">
+            <span class="icon"><i class="fa fa-times"></i></span>
+          </a>
+          <a id="botaoLimpar" class="button is-primary" onclick="nav('orcamento')">
+            <span class="icon"><i class="fa fa-undo"></i></span>
+          </a>
           <a id="botaoFiltrar" class="button is-primary" onclick="filtrarOrcamento()">
             <span class="icon"><i class="fa fa-search"></i></span>
             <span>Filtrar</span>
