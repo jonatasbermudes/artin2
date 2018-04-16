@@ -1,39 +1,51 @@
 [{
-    "codigo": "cv1",
-    "nome": "Cartão de Visita - Padrão",
-    "descricao": "Cor frente e verso - Verniz total frente - Couche 250g",
-    "quantidades": {
-      "1000": 100.00,
-      "2000": 150.00,
-      "5000": 200.00
-    }
-  },
-  {
-    "codigo": "cv2",
-    "nome": "Cartão de Visita - Premium",
-    "descricao": "Cor frente e verso - Laminação fosca e verniz localizado frente e verso - Couche 300g",
-    "quantidades": {
-      "1000": 200.00,
-      "2000": 250.00,
-      "5000": 300.00
-    }
-  }, {
-    "codigo": "pf1",
-    "nome": "Panfleto - Padrão",
-    "descricao": "Cor frente e verso - 15cm x 21cm - Couche 115g",
-    "quantidades": {
-      "1000": 300.00,
-      "2000": 450.00,
-      "5000": 500.00
-    }
-  }, {
-    "codigo": "pf2",
-    "nome": "Panfleto - Premium",
-    "descricao": "Cor frente e verso - 15cm x 21cm - Couche 175g",
-    "quantidades": {
-      "1000": 500.00,
-      "2000": 550.00,
-      "5000": 600.00
-    }
+  "codigo": "lg1",
+  "nome": "Logotipo",
+  "descricao": "Criação de Logotipo",
+  "quantidades": {
+    "lg1": 300.00
   }
-]
+}, {
+  "codigo": "lg2",
+  "nome": "Logotipo e Manual da Marca",
+  "descricao": "Criação de Logotipo e Manual da Marca",
+  "quantidades": {
+    "lg2": 400.00
+  }
+}, {
+  "codigo": "cv1",
+  "nome": "Cartão de Visita - Padrão",
+  "descricao": "Cor frente e verso - Verniz total frente - Couche 250g",
+  "quantidades": {
+    "1000": 100.00,
+    "2000": 150.00,
+    "5000": 200.00
+  }
+}, {
+  "codigo": "cv2",
+  "nome": "Cartão de Visita - Premium",
+  "descricao": "Cor frente e verso - Laminação fosca e verniz localizado frente e verso - Couche 300g",
+  "quantidades": {
+    "1000": 200.00,
+    "2000": 250.00,
+    "5000": 300.00
+  }
+}, {
+  "codigo": "pf1",
+  "nome": "Panfleto - Padrão",
+  "descricao": "Cor frente e verso - 15cm x 21cm - Couche 115g",
+  "quantidades": {
+    "1000": 300.00,
+    "2000": 450.00,
+    "5000": 500.00
+  }
+}, {
+  "codigo": "pf2",
+  "nome": "Panfleto - Premium",
+  "descricao": "Cor frente e verso - 15cm x 21cm - Couche 175g",
+  "quantidades": {
+    "1000": 500.00,
+    "2000": 550.00,
+    "5000": 600.00
+  }
+}]
