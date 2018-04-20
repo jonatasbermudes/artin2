@@ -47,7 +47,7 @@ function filtrarOrcamento() {
 
   for (var i = 0; i < produtos.length; i++) {
 
-    if (filtrarCartao && (produtos[i].codigo == "cv1" || produtos[i].codigo == "cv2")) {
+    if (filtrarCartao && (produtos[i].codigo.search("cv") == 0)) {
       lista += "<p class='control'>";
       lista += "<label class='checkbox'>";
       lista += "<input id='" + produtos[i].codigo + "' type='checkbox' onchange=\"exibirQuantidades('" + produtos[i].codigo + "')\">" + "&nbsp";
@@ -57,7 +57,7 @@ function filtrarOrcamento() {
       lista += "</p>";
     }
 
-    if (filtrarPanfleto && (produtos[i].codigo == "pf1" || produtos[i].codigo == "pf2")) {
+    if (filtrarPanfleto && (produtos[i].codigo.search("pf") == 0)) {
       lista += "<p class='control'>";
       lista += "<label class='checkbox'>";
       lista += "<input id='" + produtos[i].codigo + "' type='checkbox' onchange=\"exibirQuantidades('" + produtos[i].codigo + "')\">" + "&nbsp";
@@ -67,7 +67,7 @@ function filtrarOrcamento() {
       lista += "</p>";
     }
 
-    if (filtrarLogo && (produtos[i].codigo == "lg1" || produtos[i].codigo == "lg2")) {
+    if (filtrarLogo && (produtos[i].codigo.search("lg") == 0)) {
       lista += "<p class='control'>";
       lista += "<label class='checkbox'>";
       lista += "<input id='" + produtos[i].codigo + "' type='checkbox' onchange=\"exibirQuantidades('" + produtos[i].codigo + "')\">" + "&nbsp";
@@ -92,22 +92,37 @@ function exibirQuantidades(cod) {
   }
 
   var quantidades = "<div style='padding-left: 20px'>";
-  quantidades += "<li style='list-style-type: none'>"
+  quantidades += "<li style='list-style-type: none'>";
   for (var i = 0; i < produtos.length; i++) {
     if (produtos[i].codigo == cod) {
       for (var q in produtos[i].quantidades) {
-        quantidades += "<ul>"
-        quantidades += "<label class='checkbox'>"
-        quantidades += "<input id='" + produtos[i].codigo + q + "' type='checkbox'>"
-        quantidades += " " + q + " unidades: R$ " + produtos[i].quantidades[q];
+        quantidades += "<ul>";
+        quantidades += "<label class='checkbox'>";
+        quantidades += "<input id='" + produtos[i].codigo + q + "' type='checkbox'>";
+
+        if (produtos[i].codigo.search("lg") == 0) {
+          quantidades += " 1 unidade: R$ " + produtos[i].quantidades[q];
+        } else {
+          quantidades += " " + q + " unidades: R$ " + produtos[i].quantidades[q];
+        }
+
         quantidades += "</label>";
-        quantidades += "</ul>"
+        quantidades += "</ul>";
       }
     }
   }
 
-  quantidades += "</li>"
+  quantidades += "</li>";
+  quantidades += "</div>";
   inner("qtd" + cod, quantidades);
+}
+
+function incluirValor() {
+  if (getE("checkValorTotal").checked) {
+    getE("checkParcelar").disabled = false;
+  } else {
+    getE("checkParcelar").disabled = true;
+  }
 }
 
 //Função para gerar e exibir o texto contendo o orçamento
@@ -141,16 +156,18 @@ function exibirQuantidades(cod) {
 
 function gerarOrcamento() {
   inner("erroOrcamento", "");
+  inner("textoCopiar", "");
 
   var cliente = getE("inputCliente").value;
   var incluirValorTotal = getE("checkValorTotal").checked;
-  var orcamento = "Orçamento: ";
+  var parcelar = getE("checkParcelar").checked;
+  var orcamento = "<b>Orçamento: </b>";
   var valorTotal = 0;
 
   if (cliente != null && cliente != "") {
-    orcamento += cliente + "\n";
+    orcamento += "<b>" + cliente + "</b><br/>";
   } else {
-    orcamento += "\n";
+    orcamento += "<br/>";
   }
 
   var produtoValido = false;
@@ -158,43 +175,92 @@ function gerarOrcamento() {
   for (var i = 0; i < produtos.length; i++) {
     var checked = getE(produtos[i].codigo) == null ? false : getE(produtos[i].codigo).checked;
     if (checked) {
-      orcamento += "\n" + produtos[i].nome + "\n";
-      orcamento += produtos[i].descricao + "\n";
+      orcamento += "<br/><b>" + produtos[i].nome + "</b><br/>";
+      orcamento += produtos[i].descricao + "<br/>";
       produtoValido = true;
     }
 
     var quantidadeValida = false;
+    var countQuantidade = 0;
 
     for (var q in produtos[i].quantidades) {
       var checked = getE(produtos[i].codigo + "" + q) == null ? false : getE(produtos[i].codigo + "" + q).checked;
       if (checked) {
-        orcamento += q + " unidades: R$ " + produtos[i].quantidades[q] + "\n";
+        //caso seja logotipo, que não possui quantidade
+        if (produtos[i].codigo.search("lg") == 0) {
+          orcamento += "Valor do serviço: R$ " + produtos[i].quantidades[q] + "<br/>";
+        } else {
+          orcamento += q + " unidades: R$ " + produtos[i].quantidades[q] + "<br/>";
+        }
         valorTotal += produtos[i].quantidades[q];
         quantidadeValida = true;
+        countQuantidade++;
       } else if (getE(produtos[i].codigo) == null) {
         quantidadeValida = true;
       }
     }
 
+    if (incluirValorTotal && countQuantidade > 1) {
+      inner("erroOrcamento", "Não é possível incluir o valor total ao selecionar mais de uma quantidade do mesmo produto!");
+      inner("textoOrcamento", "");
+      getE("botaoCopiar").setAttribute("disabled", "disabled");
+      getE("checkValorTotal").disabled = true;
+      getE("checkParcelar").disabled = true;
+      return;
+    } else {
+      getE("checkValorTotal").disabled = false;
+      if (getE("checkValorTotal").checked) {
+        getE("checkParcelar").disabled = false;
+      }
+    }
+
     if (getE(produtos[i].codigo) != null && getE(produtos[i].codigo).checked && !quantidadeValida) {
       inner("erroOrcamento", "Selecione pelo menos uma quantidade para cada produto marcado!");
+      inner("textoOrcamento", "");
       return;
     }
   }
 
   if (!produtoValido) {
     inner("erroOrcamento", "Selecione pelo menos um produto!");
+    inner("textoOrcamento", "");
     return;
   }
 
   if (incluirValorTotal) {
-    orcamento += "\n" + "Valor total: R$ " + valorTotal + "\n";
+    orcamento += "<br/>" + "<b>Valor total:</b> R$ " + (valorTotal - (valorTotal / 100 * 5)).toFixed(0) + " (à vista, com desconto)";
+
+    if (parcelar) {
+      orcamento += " ou 2x de R$ " + (valorTotal / 2).toFixed(0);
+    }
+    orcamento += "<br/>";
   }
 
-  orcamento += "\n" + "Orçamento válido por 7 dias.";
-  orcamento += "\n" + "Entrega em até 10 dias úteis após aprovação da arte.";
+  orcamento += "<br/><i>" + "Arte inclusa.";
+  orcamento += "<br/>" + "Orçamento válido por 7 dias.";
+  orcamento += "<br/>" + "Entrega em até 10 dias úteis após aprovação da arte.</i>";
 
-  alert(orcamento);
+  getE("botaoCopiar").removeAttribute("disabled");
+  inner("textoAviso", "Aqui está seu orçamento:");
+  inner("textoOrcamento", orcamento);
+
+  setS("sessaoHora", new Date().getTime());
+}
+
+//Função que copia o conteúdo da div de Orçamento para a área de tranferência
+function copiarTexto() {
+  str = getE("textoOrcamento").innerHTML;
+
+  function listener(e) {
+    e.clipboardData.setData("text/html", str);
+    e.clipboardData.setData("text/plain", str);
+    e.preventDefault();
+  }
+  document.addEventListener("copy", listener);
+  document.execCommand("copy");
+  document.removeEventListener("copy", listener);
+
+  inner("textoCopiar", "O orçamento foi copiado para a área de transferencia! Use \"Ctrl + V\" para colar.");
 }
 
 //Busca e retorna os objetos no arquivo Json

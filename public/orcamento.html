@@ -17,59 +17,82 @@
   <section class="hero is-fullheight">
     <div class="hero-body">
       <div class="container">
-        <div class="column is-half">
-          <h2 id="textoPergunta" class="subtitle">Qual o tipo do serviço?</h2>
-          <div class="field">
-            <p class="control">
-              <input id="inputCliente" class="input" type="text" placeholder="Nome do Cliente (opcional)">
-            </p>
-          </div>
-          <div id="selecoes" class="field">
-            <p class="control">
-              <label class="checkbox">
+        <div class="columns">
+          <div class="column">
+            <h2 id="textoPergunta" class="subtitle">Qual o tipo do serviço?</h2>
+            <div class="field">
+              <p class="control">
+                <input id="inputCliente" class="input" type="text" placeholder="Nome do Cliente (opcional)">
+              </p>
+            </div>
+            <div id="selecoes" class="field">
+              <p class="control">
+                <label class="checkbox">
               <input id="checkLogo" type="checkbox">
               Logotipo
             </label>
-            </p>
-            <p class="control">
-              <label class="checkbox">
+              </p>
+              <p class="control">
+                <label class="checkbox">
               <input id="checkCartao" type="checkbox">
               Cartão
             </label>
-            </p>
-            <p class="control">
-              <label class="checkbox">
+              </p>
+              <p class="control">
+                <label class="checkbox">
               <input id="checkPanfleto" type="checkbox">
               Panfleto
             </label>
-            </p>
-          </div>
-          <div class="field">
-            <div class="field">
-              <p class="control">
-                <label class="checkbox">
-                  <input id="checkValorTotal" type="checkbox">
-                  Incluir valor total no final do orçamento
-                </label>
               </p>
             </div>
-            <a id="botaoVoltar" title="Cancelar" class="button is-danger is-primary" onclick="nav('principal')">
+            <div class="field">
+              <div class="field">
+                <p class="control">
+                  <label class="checkbox">
+                  <input id="checkValorTotal" type="checkbox" onchange="incluirValor()">
+                  Incluir valor total no final do orçamento
+                </label>
+                </p>
+                <p class="control">
+                  <label class="checkbox">
+                  <input id="checkParcelar" type="checkbox" disabled>
+                  Parcelar (em 2x)
+                </label>
+                </p>
+              </div>
+              <a id="botaoVoltar" title="Cancelar" class="button is-danger is-primary" onclick="nav('principal')">
             <span class="icon"><i class="fa fa-times"></i></span>
           </a>
-            <a id="botaoLimpar" title="Refazer Orçamento" class="button is-primary" onclick="nav('orcamento')">
+              <a id="botaoLimpar" title="Refazer Orçamento" class="button is-primary" onclick="nav('orcamento')">
             <span class="icon"><i class="fa fa-undo"></i></span>
           </a>
-            <a id="botaoFiltrar" class="button is-primary" onclick="filtrarOrcamento()">
+              <a id="botaoFiltrar" class="button is-primary" onclick="filtrarOrcamento()">
             <span class="icon"><i class="fa fa-search"></i></span>
             <span>Filtrar</span>
           </a>
-            <a id="botaoOrcamento" class="button is-primary is-hidden" onclick="gerarOrcamento()">
+              <a id="botaoOrcamento" class="button is-primary is-hidden" onclick="gerarOrcamento()">
             <span class="icon"><i class="fa fa-check"></i></span>
             <span>Gerar Orçamento</span>
           </a>
+            </div>
+            <div class="field">
+              <p id="erroOrcamento" class="has-text-danger help"></p>
+            </div>
           </div>
-          <div class="field">
-            <p id="erroOrcamento" class="has-text-danger help"></p>
+          <div class="column">
+            <h2 id="textoAviso" class="subtitle">Seu orçamento aparecerá aqui:</h2>
+            <div class="field">
+              <p id="textoOrcamento"></p>
+            </div>
+            <div class="field">
+              <p id="textoCopiar" class="has-text-success help"></p>
+            </div>
+            <div class="field">
+              <a id="botaoCopiar" class="button is-primary" onclick="copiarTexto()" disabled>
+                <span class="icon"><i class="fa fa-copy"></i></span>
+                <span>Copiar texto para área de transferência</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
