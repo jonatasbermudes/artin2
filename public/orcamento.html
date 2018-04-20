@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="./css/bulma.css">
   <script src="./js_util/fontawesome-all.js"></script>
   <script src="./js_util/jquery-3.3.1.min.js"></script>
+  <script src="./js_util/jspdf.min.js"></script>
+  <script src="./js_util/html2canvas.js"></script>
   <script src="./js/jsFuncoes.js"></script>
   <script src="./js/jsOrcamento.js"></script>
   <title>Artin2 - Orçamento</title>
@@ -90,7 +92,11 @@
             <div class="field">
               <a id="botaoCopiar" class="button is-primary" onclick="copiarTexto()" disabled>
                 <span class="icon"><i class="fa fa-copy"></i></span>
-                <span>Copiar texto para área de transferência</span>
+                <span>Copiar Texto</span>
+              </a>
+              <a id="botaoImprimirPDF" class="button is-primary" onclick="imprimirPDF()" disabled>
+                <span class="icon"><i class="fa fa-print"></i></span>
+                <span>Imprimir PDF</span>
               </a>
             </div>
           </div>

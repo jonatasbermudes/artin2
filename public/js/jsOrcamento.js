@@ -117,6 +117,7 @@ function exibirQuantidades(cod) {
   inner("qtd" + cod, quantidades);
 }
 
+//Função para habilitar ou não o checkbox de parcelas
 function incluirValor() {
   if (getE("checkValorTotal").checked) {
     getE("checkParcelar").disabled = false;
@@ -125,7 +126,6 @@ function incluirValor() {
   }
 }
 
-//Função para gerar e exibir o texto contendo o orçamento
 // function gerarOrcamento() {
 //   var produtosSelecionados = [];
 //
@@ -154,6 +154,7 @@ function incluirValor() {
 //   var orcamento = "";
 // }
 
+//Função para gerar e exibir o texto contendo o orçamento
 function gerarOrcamento() {
   inner("erroOrcamento", "");
   inner("textoCopiar", "");
@@ -261,6 +262,35 @@ function copiarTexto() {
   document.removeEventListener("copy", listener);
 
   inner("textoCopiar", "O orçamento foi copiado para a área de transferencia! Use \"Ctrl + V\" para colar.");
+}
+
+//Função que imprime em PDF o orçamento gerado
+function imprimirPDF() {
+
+  //SEM USAR BIBLIOTECA:
+  // var divContents = getE("textoOrcamento").innerHTML;
+  // var printWindow = window.open('', '', 'height=400,width=800');
+  // printWindow.document.write('<html><head><title>DIV Contents</title>');
+  // printWindow.document.write('</head><body >');
+  // printWindow.document.write(divContents);
+  // printWindow.document.write('</body></html>');
+  // printWindow.document.close();
+  // printWindow.print();
+
+  var printDoc = new jsPDF();
+  printDoc.fromHTML(getE('textoOrcamento').innerHTML, 10, 10, {
+    'width': 180
+  });
+  printDoc.autoPrint();
+  printDoc.output("dataurlnewwindow");
+
+
+  // str = getE("textoOrcamento").innerHTML;
+  // str = str.replace("<br/>", "\n")
+  //
+  // var doc = new jsPDF();
+  // doc.text(str, 35, 25);
+  // doc.save("Artin2 - Orçamento.pdf");
 }
 
 //Busca e retorna os objetos no arquivo Json

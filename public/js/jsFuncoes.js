@@ -26,6 +26,18 @@ function nav(endereco) {
 }
 
 
+//Busca e retorna os objetos no arquivo Json
+// function buscarJson(json) {
+//   var xmlhttp = new XMLHttpRequest();
+//   xmlhttp.onreadystatechange = function() {
+//     if (this.readyState == 4 && this.status == 200) {
+//       json = JSON.parse(this.responseText);
+//     }
+//   };
+//   xmlhttp.open("GET", "./json/" + json + ".json", true);
+//   xmlhttp.send();
+// }
+
 
 //Verifica todos os campso do objeto para evitar erros com atributos "undefined"
 // function verificaCampos(a) {
