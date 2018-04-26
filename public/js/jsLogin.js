@@ -1,9 +1,11 @@
 //Declaração de variáveis globais
 var usuarios;
+var seq;
 
 //Busca dados do Json no carregamento da página
 window.onload = function() {
   rotinaSessao();
+  iniciarFirebase();
   buscarUsuarios();
 }
 
@@ -75,14 +77,22 @@ function limparErros() {
   inner("erroSenha", "");
 }
 
-//Busca e retorna os objetos no arquivo Json
+//Busca e retorna os objetos no Firebase
 function buscarUsuarios() {
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      usuarios = JSON.parse(this.responseText);
-    }
-  };
-  xmlhttp.open("GET", "./json/usuarios.json", true);
-  xmlhttp.send();
+  var ref = firebase.database().ref("usuarios").on('value', function(snapshot) {
+    usuarios = snapshot.val().dados;
+    seq = snapshot.val().info.seq; //retorna o valor da ultima chave
+  });
 }
+
+//Busca e retorna os objetos no arquivo Json
+// function buscarUsuarios() {
+//   var xmlhttp = new XMLHttpRequest();
+//   xmlhttp.onreadystatechange = function() {
+//     if (this.readyState == 4 && this.status == 200) {
+//       usuarios = JSON.parse(this.responseText);
+//     }
+//   };
+//   xmlhttp.open("GET", "./json/usuarios.json", true);
+//   xmlhttp.send();
+// }

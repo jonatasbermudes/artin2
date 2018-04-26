@@ -1,0 +1,74 @@
+{
+  "produtos" : {
+  "dados" : [ {
+    "codigo" : "lg1",
+    "descricao" : "Criação de Logotipo",
+    "nome" : "Logotipo",
+    "quantidades" : {
+      "lg1" : 300.0
+    }
+  }, {
+    "codigo" : "lg2",
+    "descricao" : "Criação de Logotipo e Manual da Marca",
+    "nome" : "Logotipo e Manual da Marca",
+    "quantidades" : {
+      "lg2" : 400.0
+    }
+  }, {
+    "codigo" : "cv1",
+    "descricao" : "Cor frente e verso - Verniz total frente - Couche 250g",
+    "nome" : "Cartão de Visita - Padrão",
+    "quantidades" : {
+      "1000" : 100.0,
+      "2000" : 150.0,
+      "5000" : 200.0
+    }
+  }, {
+    "codigo" : "cv2",
+    "descricao" : "Cor frente e verso - Laminação fosca e verniz localizado frente e verso - Couche 300g",
+    "nome" : "Cartão de Visita - Premium",
+    "quantidades" : {
+      "1000" : 200.0,
+      "2000" : 250.0,
+      "5000" : 300.0
+    }
+  }, {
+    "codigo" : "pf1",
+    "descricao" : "Cor frente e verso - 15cm x 21cm - Couche 115g",
+    "nome" : "Panfleto - Padrão",
+    "quantidades" : {
+      "1000" : 300.0,
+      "2000" : 450.0,
+      "5000" : 500.0
+    }
+  }, {
+    "codigo" : "pf2",
+    "descricao" : "Cor frente e verso - 15cm x 21cm - Couche 175g",
+    "nome" : "Panfleto - Premium",
+    "quantidades" : {
+      "1000" : 500.0,
+      "2000" : 550.0,
+      "5000" : 600.0
+    }
+  } ],
+  "info" : {
+    "seq" : 6
+  }
+  },
+  "usuarios" : {
+    "dados" : [ {
+      "email" : "jonatasbermudes@gmail.com",
+      "login" : "jonatas",
+      "nome" : "Jonatas Bermudes",
+      "senha" : "j123"
+    }, {
+      "email" : "scdalvi@gmail.com",
+      "login" : "sidney",
+      "nome" : "Sidney Dalvi",
+      "senha" : "s123"
+    } ],
+    "info" : {
+      "seq" : 2
+    }
+  }
+}

@@ -1,0 +1,14 @@
+http-server -c-1 -Phttp://jonatas.bermudes:Poipoi02@proxy00-dgm.el.com.br:3128
+
+
+//EXEMPLO DE COMO SALVAR NO FIREBASE
+// function salvar(){
+//   var usuario = {nome: 'Sidney Dalvi Teste', email: 'scdalvi@gmail.com', login: 'sidney', senha: 's123'};
+//   firebaseInsert('usuarios', seq, usuario);
+// }
+//
+// function firebaseInsert(tabela, id, objeto) {
+//   id++;
+//   firebase.database().ref('usuarios/' + id).set(objeto);
+//   firebase.database().ref('usuarios/info/seq').set(id);
+// }

@@ -25,6 +25,18 @@ function nav(endereco) {
   location.replace("./" + endereco + ".html");
 }
 
+//Função que inicializa o Firebase
+function iniciarFirebase() {
+  var config = {
+    apiKey: "AIzaSyD1-8xokGF4FSAutzWPVfP7A0WpEIlpDlY",
+    authDomain: "artin2-2588c.firebaseapp.com",
+    databaseURL: "https://artin2-2588c.firebaseio.com",
+    projectId: "artin2-2588c",
+    storageBucket: "",
+    messagingSenderId: "612172412134"
+  };
+  firebase.initializeApp(config);
+}
 
 //Busca e retorna os objetos no arquivo Json
 // function buscarJson(json) {
