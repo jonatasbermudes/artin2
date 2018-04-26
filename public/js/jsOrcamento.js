@@ -1,11 +1,13 @@
 //Declaração de variáveis globais
 var produtos;
+var seq;
 
 //Busca dados do Json no carregamento da página
 window.onload = function() {
   rotinaSessao();
-  buscarProdutos();
   rotinaLayout();
+  iniciarFirebase();
+  buscarProdutos();
 }
 
 //Rotina necessária para avaliar se a sessão do usuário ainda está ativa (menos de 10 minutos de inatividade)
@@ -125,34 +127,6 @@ function incluirValor() {
     getE("checkParcelar").disabled = true;
   }
 }
-
-// function gerarOrcamento() {
-//   var produtosSelecionados = [];
-//
-//   for (var i = 0; i < produtos.length; i++) {
-//     var item = {};
-//     item.cod = produtos[i].codigo;
-//     item.qtd = produtos[i].quantidades;
-//     var sel = getE(produtos[i].codigo) == null ? false : getE(produtos[i].codigo).checked;
-//     if (sel == true) {
-//       produtosSelecionados.push(item);
-//     }
-//   }
-//
-//   //"produtosSelecionados" terá apenas o codigo dos produtos selecionados
-//   for (var i = 0; i < produtos.length; i++) {
-//     for (var j = 0; j < produtosSelecionados.length; j++) {
-//       //for (var t in produtosSelecionados[j]) {
-//       if (produtos[i].codigo == produtosSelecionados[j].cod) {
-//         produtosSelecionados[j].qtd[""]
-//       }
-//       alert(produtosSelecionados[j][t]["5000"]);
-//       //}
-//     }
-//   }
-//
-//   var orcamento = "";
-// }
 
 //Função para gerar e exibir o texto contendo o orçamento
 function gerarOrcamento() {
@@ -293,14 +267,22 @@ function imprimirPDF() {
   // doc.save("Artin2 - Orçamento.pdf");
 }
 
-//Busca e retorna os objetos no arquivo Json
+//Busca e retorna os objetos no Firebase
 function buscarProdutos() {
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      produtos = JSON.parse(this.responseText);
-    }
-  };
-  xmlhttp.open("GET", "./json/produtos.json", true);
-  xmlhttp.send();
+  var ref = firebase.database().ref("produtos").on('value', function(snapshot) {
+    produtos = snapshot.val().dados;
+    seq = snapshot.val().info.seq; //retorna o valor da ultima chave
+  });
 }
+
+//Busca e retorna os objetos no arquivo Json
+// function buscarProdutos() {
+//   var xmlhttp = new XMLHttpRequest();
+//   xmlhttp.onreadystatechange = function() {
+//     if (this.readyState == 4 && this.status == 200) {
+//       produtos = JSON.parse(this.responseText);
+//     }
+//   };
+//   xmlhttp.open("GET", "./json/produtos.json", true);
+//   xmlhttp.send();
+// }
