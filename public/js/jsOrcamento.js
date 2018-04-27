@@ -1,6 +1,6 @@
 //Declaração de variáveis globais
 var produtos;
-var seq;
+var info;
 
 //Busca dados do Json no carregamento da página
 window.onload = function() {
@@ -271,7 +271,7 @@ function imprimirPDF() {
 function buscarProdutos() {
   var ref = firebase.database().ref("produtos").on('value', function(snapshot) {
     produtos = snapshot.val().dados;
-    seq = snapshot.val().info.seq; //retorna o valor da ultima chave
+    info = snapshot.val().info; //retorna informações da tabela
   });
 }
 

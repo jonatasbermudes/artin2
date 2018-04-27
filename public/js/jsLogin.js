@@ -1,6 +1,6 @@
 //Declaração de variáveis globais
 var usuarios;
-var seq;
+var info;
 
 //Busca dados do Json no carregamento da página
 window.onload = function() {
@@ -33,8 +33,8 @@ function rotinaSessao() {
 function validarLogin() {
   limparErros();
 
-  var user = document.getElementById("inputUsuario").value;
-  var pass = document.getElementById("inputSenha").value;
+  var user = getE("inputUsuario").value;
+  var pass = getE("inputSenha").value;
 
   if (user == "") {
     inner("erroUsuario", "Digite aqui seu nome de usuário!");
@@ -81,7 +81,7 @@ function limparErros() {
 function buscarUsuarios() {
   var ref = firebase.database().ref("usuarios").on('value', function(snapshot) {
     usuarios = snapshot.val().dados;
-    seq = snapshot.val().info.seq; //retorna o valor da ultima chave
+    info = snapshot.val().info; //retorna informações da tabela
   });
 }
 

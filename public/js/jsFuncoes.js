@@ -38,6 +38,22 @@ function iniciarFirebase() {
   firebase.initializeApp(config);
 }
 
+//FUNÇÕES DO FIREBASE:
+//Salvar
+function firebaseInsert(tabela, id, objeto, params) {
+  params = params || null;
+
+  firebase.database().ref(tabela + "/dados/" + id).set(objeto);
+  id++;
+  firebase.database().ref(tabela + "/info/seq").set(id);
+
+  //incrementa sequenciais de controle, se houverem
+  if(params != null){
+    params.seq++;
+    firebase.database().ref(tabela + "/info/seq" + params.codigo).set(params.seq);
+  }
+}
+
 //Busca e retorna os objetos no arquivo Json
 // function buscarJson(json) {
 //   var xmlhttp = new XMLHttpRequest();
