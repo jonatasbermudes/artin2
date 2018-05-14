@@ -40,17 +40,17 @@ function iniciarFirebase() {
 
 //FUNÇÕES DO FIREBASE:
 //Salvar
-function firebaseInsert(tabela, id, objeto, params) {
-  params = params || null;
+function firebaseInsert(tabela, id, objeto, tipo) {
+  tipo = tipo || null;
 
   firebase.database().ref(tabela + "/dados/" + id).set(objeto);
   id++;
   firebase.database().ref(tabela + "/info/seq").set(id);
 
   //incrementa sequenciais de controle, se houverem
-  if(params != null){
-    params.seq++;
-    firebase.database().ref(tabela + "/info/seq" + params.codigo).set(params.seq);
+  if(tipo != null){
+    tipo.sequencial++;
+    firebase.database().ref(tabela + "/info/seq" + tipo.codigo).set(tipo.sequencial);
   }
 }
 
